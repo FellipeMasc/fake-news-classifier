@@ -12,6 +12,7 @@ import random
 import string
 import os
 import dotenv
+import hashlib
 from cryptography.fernet import Fernet
 import base64
 from db.schemas import TokenPayload, User
@@ -34,9 +35,8 @@ reuseable_oauth = OAuth2PasswordBearer(
     scheme_name="JWT"
 )
 
-def generate_api_key() -> str:
-    posfix = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
-    return 'fnc-' + posfix
+def generate_api_key(key_name : str) -> str:
+    return hashlib.sha256(key_name.encode()).hexdigest()
 
 def get_hashed_password(password: str) -> str:
     return password_context.hash(password)

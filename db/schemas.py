@@ -30,6 +30,8 @@ class Query(QueryBase):
     response: str
     model: str
     createdAt: datetime
+    class Config:
+        from_attributes = True
     
 class User(UserBase):
     id: int
