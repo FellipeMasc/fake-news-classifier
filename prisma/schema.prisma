@@ -1,0 +1,40 @@
+// Environment variables
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://tsdbadmin:cz60m7cr0prkvfjc@buxvt7dvev.e8j1shdh54.tsdb.cloud.timescale.com:31332/tsdb?schema=public&connection_limit=1"
+}
+
+// generator
+generator client {
+  provider             = "prisma-client-py"
+  recursive_type_depth = 5
+}
+
+// data models
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  is_active Boolean  @default(false)
+  api_keys  ApiKey[]
+  queries   Query[]
+}
+
+model ApiKey {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  key       String
+  name      String
+  createdAt DateTime @default(now())
+}
+
+model Query {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  query     String
+  response  String
+  model     String
+  createdAt DateTime @default(now())
+}

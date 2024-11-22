@@ -1,8 +1,9 @@
-from jose import jwe
+from fastapi import FastAPI
+from routes.main import api_router
+from fastapi.middleware.cors import CORSMiddleware
 import os
-import dotenv
-dotenv.load_dotenv()
 
+app = FastAPI()
 
-def main():
-    jwe.encrypt("Hello, World!", os.environ["encrypt_key"])
+app.include_router(api_router)
+
