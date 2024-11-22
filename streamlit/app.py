@@ -1,22 +1,8 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-from text_analysis import (
-    clean_text,
-    get_top_words,
-    calculate_sentiment,
-    generate_wordcloud,
-    get_top_ngrams,
-    vocabulary_diversity,
-    plot_top_words,
-)
-from other_analysis import (
-    distribution_by_subject,
-    temporal_analysis,
-    text_length_analysis,
-    subject_text_length_correlation,
-    correlation_matrix_analysis,
-)
+from text_analysis import *
+from other_analysis import *
 
 # Configurar a página
 st.set_page_config(page_title="Fake vs True News Analysis", layout="wide")
