@@ -92,11 +92,27 @@ elif analysis_option == "N-Gramas":
     fake_ngrams = get_top_ngrams(df_fake['clean_text'], ngram_range=(n, n))
     true_ngrams = get_top_ngrams(df_true['clean_text'], ngram_range=(n, n))
 
+    # Plotar os n-gramas mais frequentes para Fake News
     st.write("Fake News N-Gramas:")
-    st.write(pd.DataFrame(fake_ngrams, columns=["N-Grama", "Frequência"]))
+    fake_ngrams_df = pd.DataFrame(fake_ngrams, columns=["N-Grama", "Frequência"])
+    fig_fake, ax_fake = plt.subplots(figsize=(8, 4))
+    ax_fake.barh(fake_ngrams_df["N-Grama"], fake_ngrams_df["Frequência"], color="salmon")
+    ax_fake.set_title(f"Top {len(fake_ngrams)} {n}-Gramas - Fake News")
+    ax_fake.set_xlabel("Frequência")
+    ax_fake.set_ylabel("N-Gramas")
+    plt.gca().invert_yaxis()  # Inverter para mostrar os mais frequentes no topo
+    st.pyplot(fig_fake)
 
+    # Plotar os n-gramas mais frequentes para True News
     st.write("True News N-Gramas:")
-    st.write(pd.DataFrame(true_ngrams, columns=["N-Grama", "Frequência"]))
+    true_ngrams_df = pd.DataFrame(true_ngrams, columns=["N-Grama", "Frequência"])
+    fig_true, ax_true = plt.subplots(figsize=(8, 4))
+    ax_true.barh(true_ngrams_df["N-Grama"], true_ngrams_df["Frequência"], color="skyblue")
+    ax_true.set_title(f"Top {len(true_ngrams)} {n}-Gramas - True News")
+    ax_true.set_xlabel("Frequência")
+    ax_true.set_ylabel("N-Gramas")
+    plt.gca().invert_yaxis()  # Inverter para mostrar os mais frequentes no topo
+    st.pyplot(fig_true)
 
 elif analysis_option == "Diversidade de Vocabulário":
     st.subheader("Diversidade de Vocabulário")
