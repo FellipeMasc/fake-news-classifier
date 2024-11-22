@@ -42,7 +42,7 @@ analysis_option = st.sidebar.selectbox(
         "Análise Temporal",
         "Análise de Comprimento de Texto",
         "Correlação Entre Assunto e Comprimento do Texto",
-        "Matriz de Correlação",
+        "Correlação Entre o Tipo e o Assunto da Notícia",
     ],
 )
 
@@ -122,8 +122,8 @@ elif analysis_option == "Correlação Entre Assunto e Comprimento do Texto":
     st.subheader("Correlação Entre Assunto e Comprimento do Texto")
     subject_text_length_correlation(df_fake, df_true)
 
-elif analysis_option == "Matriz de Correlação":
-    st.subheader("Matriz de Correlação")
+elif analysis_option == "Correlação Entre o Tipo e o Assunto da Notícia":
+    st.subheader("Correlação Entre o Tipo e o Assunto da Notícia")
     correlation_matrix_analysis(df_fake, df_true)
 
 else:
