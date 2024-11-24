@@ -1,7 +1,7 @@
 // Environment variables
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://tsdbadmin:cz60m7cr0prkvfjc@buxvt7dvev.e8j1shdh54.tsdb.cloud.timescale.com:31332/tsdb?schema=public&connection_limit=1"
+  url      = env("DATABASE_URL")
 }
 
 // generator
