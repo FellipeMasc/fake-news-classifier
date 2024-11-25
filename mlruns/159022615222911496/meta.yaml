@@ -1,0 +1,6 @@
+artifact_location: file:///C:/ITA/exame-cmc16/datascience/../mlruns/159022615222911496
+creation_time: 1732555385917
+experiment_id: '159022615222911496'
+last_update_time: 1732555385917
+lifecycle_stage: active
+name: fake_news_classifier_not_overfitting

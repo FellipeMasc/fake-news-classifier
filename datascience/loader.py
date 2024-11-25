@@ -5,6 +5,7 @@ import re
 import string
 
 def wordopt(text):
+    text = re.sub(r'^\w+\s+\((Reuters)\)\s+-\s+', '',text)
     text = text.lower()
     text = re.sub('\[.*?\]', '', text)
     text = re.sub("\\W", " ", text)

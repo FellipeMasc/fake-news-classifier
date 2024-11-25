@@ -1,3 +1,4 @@
+from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.pipeline import FunctionTransformer, Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -21,34 +22,27 @@ def pipeline_decision_tree():
     
 
 algorithms = {
-    'decision_tree': GridSearchCV(
+    'decision_tree':
         Pipeline([
-            ('vectorizer', TfidfVectorizer()), 
-            ('tree', DecisionTreeClassifier(random_state=seed))
-        ]),
-        param_grid={
-            'vectorizer__max_features': [1000],
-            'tree__max_depth': [5, 10],
-            'tree__criterion': ['entropy', 'gini']
-        },
-        scoring=scorer,
-        cv=gscv,
-        n_jobs=-1,
-        error_score='raise'
-    ),
-    'logistic_regression': GridSearchCV(
+            ('vectorizer', TfidfVectorizer(max_features=10000)), 
+            ('tree', DecisionTreeClassifier(
+                max_depth=2,               # Limita a profundidade
+                min_samples_split=5,      # Mínimo de 10 amostras para dividir
+                min_samples_leaf=5,        
+                random_state=seed   
+            ))
+        ])
+    ,
+    'logistic_regression': 
         Pipeline([
-            ('vectorizer', TfidfVectorizer()),
-            ('logreg', LogisticRegression(random_state=seed, max_iter=1000))
-        ]),
-        param_grid={
-            'vectorizer__max_features': [500, 1000, 2000],
-            'logreg__C': [0.1, 1.0, 10.0],
-            'logreg__penalty': ['l2'] 
-        },
-        scoring=scorer,
-        cv=gscv,
-        n_jobs=-1,
-        error_score='raise'
+            ('vectorizer', TfidfVectorizer(max_features=10000)),
+            ('logreg', LogisticRegression(random_state=seed, penalty='l2', C=0.1, solver='lbfgs', max_iter=1000))
+        ])
+    ,
+    'gradient_boosting': Pipeline(
+        [
+            ('vectorizer', TfidfVectorizer(max_features=10000)),
+            ('gradient_boosting', GradientBoostingClassifier(random_state=0, n_estimators=40, max_depth=2, learning_rate=0.01))
+        ]
     )
 }

@@ -1,0 +1,16 @@
+artifact_uri: file:///C:/ITA/exame-cmc16/mlruns/931791840306924544/56e4407ed0e94902b7e0698e108deb86/artifacts
+deleted_time: 1732404230365
+end_time: 1732390702747
+entry_point_name: ''
+experiment_id: '931791840306924544'
+lifecycle_stage: deleted
+run_id: 56e4407ed0e94902b7e0698e108deb86
+run_name: decision_tree
+run_uuid: 56e4407ed0e94902b7e0698e108deb86
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1732390700463
+status: 4
+tags: []
+user_id: felli

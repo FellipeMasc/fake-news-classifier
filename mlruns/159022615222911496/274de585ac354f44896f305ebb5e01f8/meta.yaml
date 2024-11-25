@@ -1,0 +1,16 @@
+artifact_uri: file:///C:/ITA/exame-cmc16/datascience/../mlruns/159022615222911496/274de585ac354f44896f305ebb5e01f8/artifacts
+deleted_time: 1732557965259
+end_time: 1732557793461
+entry_point_name: ''
+experiment_id: '159022615222911496'
+lifecycle_stage: deleted
+run_id: 274de585ac354f44896f305ebb5e01f8
+run_name: gradient_boosting
+run_uuid: 274de585ac354f44896f305ebb5e01f8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1732557566779
+status: 3
+tags: []
+user_id: felli

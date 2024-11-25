@@ -1,0 +1,6 @@
+artifact_location: file:///C:/ITA/exame-cmc16/datascience/../mlruns/197379825295257624
+creation_time: 1732404886722
+experiment_id: '197379825295257624'
+last_update_time: 1732404886722
+lifecycle_stage: active
+name: fake_news_classifier

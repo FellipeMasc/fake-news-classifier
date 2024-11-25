@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/ITA/exame-cmc16/datascience/../mlruns/159022615222911496/6371b8cd38a345bdb02913f98e4c0bec/artifacts
+end_time: 1732558183543
+entry_point_name: ''
+experiment_id: '159022615222911496'
+lifecycle_stage: active
+run_id: 6371b8cd38a345bdb02913f98e4c0bec
+run_name: logistic_regression
+run_uuid: 6371b8cd38a345bdb02913f98e4c0bec
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1732558153424
+status: 3
+tags: []
+user_id: felli

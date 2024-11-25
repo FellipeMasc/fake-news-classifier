@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/ITA/exame-cmc16/datascience/../mlruns/197379825295257624/cecf204ee62a426188f753cb9950693f/artifacts
+end_time: 1732404973371
+entry_point_name: ''
+experiment_id: '197379825295257624'
+lifecycle_stage: active
+run_id: cecf204ee62a426188f753cb9950693f
+run_name: decision_tree
+run_uuid: cecf204ee62a426188f753cb9950693f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1732404887767
+status: 3
+tags: []
+user_id: felli

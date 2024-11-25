@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/ITA/exame-cmc16/mlruns/0/22a50c6b1a9a4ef595fd04a23e508b93/artifacts
+end_time: 1732406146307
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 22a50c6b1a9a4ef595fd04a23e508b93
+run_name: save_vectorizer_model
+run_uuid: 22a50c6b1a9a4ef595fd04a23e508b93
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1732406130310
+status: 3
+tags: []
+user_id: felli

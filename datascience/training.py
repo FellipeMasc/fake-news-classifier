@@ -8,25 +8,21 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report
-# df_loader = DataFrameLoader("./datascience/data/Fake.csv", "./datascience/data/True.csv")
-# df = df_loader.fit_transform(X=None)
-mlflow.set_tracking_uri("../mlruns")
-df = pd.read_csv("./datascience/data/processed_data.csv")
+df_loader = DataFrameLoader("./data/Fake.csv", "./data/True.csv")
+df = df_loader.fit_transform(X=None)
 
 X_train, X_test, y_train, y_test = train_test_split(
-    df["text"], df["class"], test_size=0.2, random_state=42, stratify=df["class"]
+    df["text"], df["class"], test_size=0.3, random_state=42, shuffle=True
 )
-
-mlflow.set_experiment("fake_news_classifier_prod")
+mlflow.set_tracking_uri("../mlruns")
+mlflow.set_experiment("fake_news_classifier_not_overfitting")
 
 for algorithm_name, pipeline in algorithms.items():
     with mlflow.start_run(run_name=algorithm_name):
         pipeline.fit(X_train, y_train)
 
-        best_params = pipeline.best_params_
-        mlflow.log_params(best_params)
 
-        best_estimator = pipeline.best_estimator_
+        best_estimator = pipeline
         y_pred = best_estimator.predict(X_test)
         test_score = best_estimator.score(X_test, y_test)
         test_accuracy = accuracy_score(y_test, y_pred)
@@ -43,5 +39,10 @@ for algorithm_name, pipeline in algorithms.items():
         mlflow.sklearn.log_model(best_estimator, f"{algorithm_name}_model")
 
         print(f"{algorithm_name}:")
-        print(f"Best Parameters: {best_params}")
-        print(f"Test Accuracy: {test_score}")
+        results_dict = {
+            "accuracy": float(test_accuracy),
+            "precision": float(test_precision),
+            "recall": float(test_recall),
+            "f1": float(test_f1)
+        }
+        print(results_dict)
