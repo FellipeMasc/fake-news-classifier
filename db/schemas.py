@@ -50,6 +50,17 @@ class TokenPayload(BaseModel):
     exp: int = None
     class Config:
         from_attributes = True
+        
+class Classifier(BaseModel):
+    input: str
+    name: str
+    model: str
+    test_accuracy: float
+    test_f1: float
+    test_precision: float
+    test_recall: float
+    class Config:
+        from_attributes = True
 
 
     

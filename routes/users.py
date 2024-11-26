@@ -2,7 +2,7 @@ from typing import List
 from fastapi import FastAPI, APIRouter, Depends, HTTPException, Response
 from deps import get_db
 from auth.main import encode_api_key, generate_api_key, get_current_user
-from db.schemas import ApiKeyBase, Query, User
+from db.schemas import ApiKeyBase, Query, User, Classifier
 
 user_router = APIRouter(
     prefix="/user",
@@ -52,4 +52,39 @@ async def create_api_key(key_name : str, user: User = Depends(get_current_user),
         "name": api_key.name,
         "userId": api_key.userId
     }
-                                           
+    
+@user_router.get('/models', summary="Enviar para um usuário os modelos disponíveis.", response_model=List[Classifier])
+async def get_models(user: User = Depends(get_current_user), db = Depends(get_db)):
+    
+    user_models = await db.classifier.find_many(where={"userId": user.id})
+    
+    response = []
+    for model in user_models:
+        response.append({
+            "input": model.input,
+            "name": model.name,
+            "model": model.model,
+            "test_accuracy": model.test_accuracy,
+            "test_f1": model.test_f1,
+            "test_precision": model.test_precision,
+            "test_recall": model.test_recall
+        })
+    return response
+
+@user_router.post('/select_model', summary="Selecionar qual modelo de cada algoritmo da base de dados será usado na classificação.", response_model=dict)  
+async def select_model(gradient_boosting_name: str = None, decision_tree_name: str = None, logistic_regression_name : str = None, user: User = Depends(get_current_user), db = Depends(get_db)):
+        
+        gradient_boosting = await db.classifier.find_first(where={"name": gradient_boosting_name})
+        decision_tree = await db.classifier.find_first(where={"name": decision_tree_name})
+        logistic_regression = await db.classifier.find_first(where={"name": logistic_regression_name})
+        
+        if not gradient_boosting or not decision_tree or not logistic_regression:
+            raise HTTPException(status_code=400, detail="Modelo não encontrado.")
+        
+        user.gradient_boosting = gradient_boosting_name
+        user.decision_tree = decision_tree_name
+        user.logistic_regression = logistic_regression_name
+        
+        await db.user.update(user)
+        
+        return {"message": "Modelos selecionados com sucesso."}              
