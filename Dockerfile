@@ -10,4 +10,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY . .
 
+RUN prisma generate
+
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -26,8 +26,8 @@ algorithms = {
         Pipeline([
             ('vectorizer', TfidfVectorizer(max_features=10000)), 
             ('tree', DecisionTreeClassifier(
-                max_depth=2,               # Limita a profundidade
-                min_samples_split=5,      # Mínimo de 10 amostras para dividir
+                max_depth=2,              
+                min_samples_split=5,    
                 min_samples_leaf=5,        
                 random_state=seed   
             ))

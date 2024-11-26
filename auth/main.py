@@ -20,7 +20,6 @@ dotenv.load_dotenv()
 
 encoded_key = os.getenv("ENCRYPT_KEY")
 byte_string = base64.b64decode(encoded_key)
-print(byte_string)
 cipher_suite = Fernet(byte_string)
 password_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7 

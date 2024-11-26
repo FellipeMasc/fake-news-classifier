@@ -2,16 +2,16 @@ import mlflow
 from datascience.loader import wordopt
 import mlflow.pyfunc
 import mlflow.sklearn
+import pickle
+import os
 
 def predict_with_model(input_data : str, model_name : str) -> list:
     model_uri = ''
-    if model_name == 'decision_tree':
-        model_uri = 'runs:/00094c16ae434ab188fd5d69e5cfa486/decision_tree_model'
-    elif model_name == 'gradient_boosting':
-        model_uri = 'runs:/3b7cbbaee86c4755add7901f2a8e4f23/gradient_boosting_model'
-    else:
-        model_uri = 'runs:/6371b8cd38a345bdb02913f98e4c0bec/logistic_regression_model'
-    model = mlflow.sklearn.load_model(model_uri)
+    root_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    model_uri = os.path.join(root_path, 'models', model_name + '.pkl')
+    model = None
+    with open(model_uri, "rb") as f:
+        model = pickle.load(f)
     
     input_data = wordopt(input_data)
     prediction_probabilities = model.predict_proba([input_data])

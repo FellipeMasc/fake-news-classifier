@@ -17,3 +17,5 @@ for alg, clf in algorithms.items():
   result[alg] = cross_val_score(clf, X, y, cv=cv)
 
 result = pd.DataFrame.from_dict(result)
+
+#GradientBoosting : F1 Score: 0.8761606708524834 +/- 0.004671511655284488 array([0.87888942, 0.87090559, 0.8714044 , 0.87627261, 0.88333134])
