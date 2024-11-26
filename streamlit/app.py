@@ -60,7 +60,7 @@ if analysis_option == "Palavras Mais Frequentes":
     true_df = plot_top_words(true_top_words, "True News")
     st.bar_chart(true_df.set_index('Word'))
 
-elif analysis_option == "Análise de Sentimento":
+elif analysis_option == "Análise de Sentimento  - desativado ":
     st.subheader("Análise de Sentimento")
     df_fake['sentiment'] = calculate_sentiment(df_fake['clean_text'])
     df_true['sentiment'] = calculate_sentiment(df_true['clean_text'])
