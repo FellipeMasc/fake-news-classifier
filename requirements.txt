@@ -10,3 +10,13 @@ pydantic==2.10.1
 python-dotenv==1.0.1
 python_jose==3.3.0
 scikit_learn==1.5.2
+streamlit
+pandas
+matplotlib
+nltk
+textblob
+wordcloud
+scikit-learn
+seaborn
+numpy
+
