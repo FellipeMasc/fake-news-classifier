@@ -12,12 +12,16 @@ generator client {
 
 // data models
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String
-  is_active Boolean  @default(false)
-  api_keys  ApiKey[]
-  queries   Query[]
+  id                          Int          @id @default(autoincrement())
+  email                       String       @unique
+  password                    String
+  is_active                   Boolean      @default(false)
+  current_gradient_boosting   String?
+  current_random_forest       String?
+  current_logistic_regression String?
+  api_keys                    ApiKey[]
+  queries                     Query[]
+  classifiers                 Classifier[]
 }
 
 model ApiKey {
@@ -37,4 +41,17 @@ model Query {
   response  String
   model     String
   createdAt DateTime @default(now())
+}
+
+model Classifier {
+  id             Int      @id @default(autoincrement())
+  userId         Int
+  user           User     @relation(fields: [userId], references: [id])
+  name           String
+  model          String
+  test_accuracy  Float
+  test_precision Float
+  test_recall    Float
+  test_f1        Float
+  createdAt      DateTime @default(now())
 }
