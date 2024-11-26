@@ -20,12 +20,11 @@ async def get_user_details(api_key = str, input = str, db = Depends(get_db)):
     #verify user
     user = await db.user.find_first(where={"id": api_key_db.userId})
     response = predict_with_model(input, "logistic_regression")
-    print(input)
     query = await db.query.create(data={"query": input, "response": response[1], "model": "regressão logística", "userId": user.id})
     
     return response[0]
 
-@predicters_router.get('/decision_tree', summary="Classificar fake news usando regressão logística.", response_model=dict)
+@predicters_router.get('/decision_tree', summary="Classificar fake news usando árvore de decisão.", response_model=dict)
 async def get_user_details(api_key = str, input = str,db = Depends(get_db)):
     #verify api key
     api_key_db = await db.apikey.find_first(where={"key": api_key})
@@ -41,7 +40,7 @@ async def get_user_details(api_key = str, input = str,db = Depends(get_db)):
     
 
 
-@predicters_router.get('/gradient_boosting', summary="Classificar fake news usando regressão logística.", response_model=dict)
+@predicters_router.get('/gradient_boosting', summary="Classificar fake news usando gradient boosting.", response_model=dict)
 async def get_user_details(api_key = str, input = str, db = Depends(get_db)):
     #verify api key
     api_key_db = await db.apikey.find_first(where={"key": api_key})
