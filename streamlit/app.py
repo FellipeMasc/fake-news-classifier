@@ -75,7 +75,7 @@ elif analysis_option == "Análise de Sentimento":
     ax[1].set_title("Sentimento - True News")
     st.pyplot(fig)
 
-elif analysis_option == "Nuvem de Palavras":
+elif analysis_option == "Nuvem de Palavras - desativado":
     st.subheader("Nuvem de Palavras")
     fake_wordcloud = generate_wordcloud(df_fake['clean_text'])
     true_wordcloud = generate_wordcloud(df_true['clean_text'])
