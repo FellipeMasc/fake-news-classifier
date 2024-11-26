@@ -61,7 +61,6 @@ async def get_models(user: User = Depends(get_current_user), db = Depends(get_db
     response = []
     for model in user_models:
         response.append({
-            "input": model.input,
             "name": model.name,
             "model": model.model,
             "test_accuracy": model.test_accuracy,

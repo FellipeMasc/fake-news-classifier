@@ -52,7 +52,6 @@ class TokenPayload(BaseModel):
         from_attributes = True
         
 class Classifier(BaseModel):
-    input: str
     name: str
     model: str
     test_accuracy: float
